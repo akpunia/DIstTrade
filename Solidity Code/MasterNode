@@ -1,0 +1,21 @@
+pragma solidity ^0.4.8;
+
+import "./StandardContainer.sol";
+
+contract MasterNode is StandardContainer{
+    
+    //ran out of time, but should include modifiers assigned by owner to make sure no one else can call these functions
+    
+    string public name;
+    address public description;
+    uint256 public balance = balanceOf(description);
+    mapping (address => address[]) public ships;
+    
+    function MasterNode(string _name, address[] _ships){
+        masterNodeList[msg.sender] = _name;
+        ships[msg.sender] = _ships;
+    }
+    
+    function whoOwns(uint256 _containerID) constant returns (address _owner);
+    
+}

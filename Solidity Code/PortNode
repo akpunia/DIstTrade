@@ -1,0 +1,30 @@
+pragma solidity ^0.4.8;
+
+import "./StandardContainer.sol";
+
+contract PortNode is StandardContainer{
+  
+    //ran out of time, but should include modifiers assigned by owner to make sure no one else can call these functions
+    
+    address public portID;
+    mapping(uint256 => bool) public approvedContainer;
+    uint256 public maxWeight;
+    
+    function approve(string _docs, uint256 _weight, uint256 _containerId) returns (bool success){
+        if (_weight <= maxWeight){
+            approvedContainer[_containerId] = true;
+            return true;
+        } else { return false; }
+    }
+    
+    function isApproved(uint256 _cid) constant returns (bool success){
+        if (approvedContainer[_cid]){
+            return true;
+        } else { return false; }
+    }
+    
+    function PortNode(address _id, uint256 _Weight){
+        maxWeight = _Weight;
+        portID = _id;
+    }
+}
